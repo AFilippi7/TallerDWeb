@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantalla de Juego - Casino UCC</title>
+    <meta name="description" content="Simulador y pantalla interactiva de juegos en Casino UCC: Tragamonedas, Ruletas y Blackjack." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body data-pagina="juego">
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ENTRE HTMLs -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Casino UCC:</strong> Arquitectura Modular de Archivos HTML</span>
+      </div>
+      <nav class="botones-pantalla">
+        <a href="index.html" class="btn-pantalla">1. Autenticación</a>
+        <a href="catalogo.html" class="btn-pantalla">2. Catálogo de Juegos</a>
+        <a href="juego.html" class="btn-pantalla activa">3. Pantalla de Juego</a>
+        <a href="carga.html" class="btn-pantalla">4. Cargar Dinero</a>
+        <a href="retiro.html" class="btn-pantalla">5. Retirar Dinero</a>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <a href="catalogo.html" class="logo-contenedor">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </a>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <a href="carga.html" class="btn-header-accion btn-header-cargar" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </a>
+        <a href="retiro.html" class="btn-header-accion btn-header-retirar" title="Retirar fondos al cajero">
+          🏦 Retirar
+        </a>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PÁGINA: PANTALLA DE JUEGO PROGRAMADA                             -->
+    <!-- ================================================================= -->
+    <main id="pantalla-juego" class="pantalla visible" style="display: block;">
+      
+      <!-- Selector Rápido de Máquinas de Juego -->
+      <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; background: #070e24; border: 1px solid var(--color-tarjeta-borde); padding: 8px 12px; border-radius: 8px;">
+        <span style="font-size: 12px; color: #a4b3d6; font-weight: 700; align-self: center; margin-right: 4px;">🎮 Cambiar Juego:</span>
+        <button type="button" class="btn-pantalla" onclick="abrirJuegoPorId('gates-of-olympus')">🎰 Tragamonedas (Slots)</button>
+        <button type="button" class="btn-pantalla" onclick="abrirJuegoPorId('ruleta-europea-vip')">🎡 Ruleta Europea VIP</button>
+        <button type="button" class="btn-pantalla" onclick="abrirJuegoPorId('vip-blackjack-diamond')">🃏 Blackjack 21 Pro</button>
+      </div>
+
+      <!-- Barra Superior de Información y Finanzas del Juego -->
+      <div class="juego-barra-superior">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <a href="catalogo.html" class="btn-volver" id="btn-volver-catalogo">
+            <span>&larr;</span> Volver al Catálogo
+          </a>
+          <div class="juego-info-titulo">
+            <h1 id="juego-titulo" style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">Gates of Olympus</h1>
+            <p><span id="juego-proveedor">Pragmatic Play</span> &bull; <span id="juego-rtp">RTP: 96.50%</span></p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <!-- Alternador Modo Real vs Demo -->
+          <div class="alternador-modo">
+            <button type="button" id="btn-modo-real" class="btn-modo activo">Modo Real</button>
+            <button type="button" id="btn-modo-demo" class="btn-modo">Modo Demo</button>
+          </div>
+
+          <!-- Acciones financieras directas desde el juego -->
+          <div class="juego-acciones-financieras">
+            <a href="retiro.html" class="btn-juego-financiero btn-juego-retirar" id="btn-juego-ir-retirar" title="Ir al Cajero para retirar tus ganancias">
+              🏦 Retirar Dinero
+            </a>
+            <a href="carga.html" class="btn-juego-financiero btn-juego-cargar" id="btn-juego-ir-cargar" title="Ir a Cargar saldo a tu cuenta">
+              + 💳 Cargar Saldo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor Principal de la Máquina de Juego -->
+      <div class="maquina-contenedor">
+        
+        <!-- ========================================== -->
+        <!-- MÁQUINA 1: TRAGAMONEDAS (SLOTS 5x3)        -->
+        <!-- ========================================== -->
+        <div id="maquina-slot" class="maquina-subpantalla">
+          <div class="ranuras-cuadricula">
+            <!-- Fila 1 -->
+            <div class="simbolo-ranura">👑</div>
+            <div class="simbolo-ranura">💎</div>
+            <div class="simbolo-ranura">7️⃣</div>
+            <div class="simbolo-ranura">⭐</div>
+            <div class="simbolo-ranura">⚡</div>
+            <!-- Fila 2 (Línea de pago principal) -->
+            <div class="simbolo-ranura">👑</div>
+            <div class="simbolo-ranura">👑</div>
+            <div class="simbolo-ranura">👑</div>
+            <div class="simbolo-ranura">🍒</div>
+            <div class="simbolo-ranura">🔔</div>
+            <!-- Fila 3 -->
+            <div class="simbolo-ranura">🍒</div>
+            <div class="simbolo-ranura">🔔</div>
+            <div class="simbolo-ranura">💎</div>
+            <div class="simbolo-ranura">7️⃣</div>
+            <div class="simbolo-ranura">⭐</div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MÁQUINA 2: RULETA EUROPEA CON PAÑO COMPLETO -->
+        <!-- ========================================== -->
+        <div id="maquina-ruleta" class="maquina-subpantalla" style="display: none;">
+          <div class="ruleta-contenedor-tablero">
+            <!-- Rueda visual y último número -->
+            <div class="ruleta-visual-caja">
+              <div class="ruleta-rueda-grafica" id="grafica-rueda">
+                🎡
+              </div>
+              <div class="ruleta-numero-resultado" id="ruleta-display-numero">
+                --
+              </div>
+              <div style="font-size: 11px; color: #a4b3d6; margin-top: 6px;">Último número sorteado</div>
+              <div class="ruleta-historial-fichas" id="ruleta-historial-bolillas">
+                <!-- Se llena con JavaScript -->
+              </div>
+            </div>
+
+            <!-- Paño de Apuestas de Ruleta -->
+            <div class="ruleta-paño-apuestas">
+              <!-- Selector de Ficha Activa -->
+              <div class="ruleta-fichas-selector">
+                <span style="font-size: 12px; font-weight: 800; color: #ffd166;">Valor Ficha:</span>
+                <button type="button" class="ficha-apuesta ficha-5 activa" data-ficha="5">$5</button>
+                <button type="button" class="ficha-apuesta ficha-10" data-ficha="10">$10</button>
+                <button type="button" class="ficha-apuesta ficha-25" data-ficha="25">$25</button>
+                <button type="button" class="ficha-apuesta ficha-50" data-ficha="50">$50</button>
+                <button type="button" class="ficha-apuesta ficha-100" data-ficha="100">$100</button>
+                <button type="button" id="btn-limpiar-apuestas-ruleta" style="margin-left: auto; background: #261616; border: 1px solid #752a2a; color: #ff8a80; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 700;">
+                  Limpiar Paño
+                </button>
+              </div>
+
+              <!-- Casilla del 0 -->
+              <div class="ruleta-grid-numeros">
+                <div class="casilla-ruleta casilla-cero" data-tipo="numero" data-valor="0">
+                  0
+                </div>
+                <!-- Grilla de los números del 1 al 36 generada en DOM -->
+                <div class="ruleta-numeros-1-36" id="grid-numeros-ruleta">
+                  <!-- Casillas 1 al 36 inyectadas por JS -->
+                </div>
+              </div>
+
+              <!-- Apuestas Exteriores Simples y Múltiples -->
+              <div class="ruleta-apuestas-exteriores">
+                <div class="casilla-exterior" data-tipo="docena" data-valor="1-12">1ª Docena (1-12)</div>
+                <div class="casilla-exterior" data-tipo="docena" data-valor="13-24">2ª Docena (13-24)</div>
+                <div class="casilla-exterior" data-tipo="docena" data-valor="25-36">3ª Docena (25-36)</div>
+              </div>
+
+              <div class="ruleta-apuestas-exteriores">
+                <div class="casilla-exterior" data-tipo="mitad" data-valor="1-18">1 al 18</div>
+                <div class="casilla-exterior" data-tipo="paridad" data-valor="par">PAR</div>
+                <div class="casilla-exterior casilla-rojo" data-tipo="color" data-valor="rojo">ROJO</div>
+                <div class="casilla-exterior casilla-negro" data-tipo="color" data-valor="negro">NEGRO</div>
+                <div class="casilla-exterior" data-tipo="paridad" data-valor="impar">IMPAR</div>
+                <div class="casilla-exterior" data-tipo="mitad" data-valor="19-36">19 al 36</div>
+              </div>
+
+              <!-- Resumen de apuestas activas en ruleta -->
+              <div class="ruleta-resumen-apuestas" id="ruleta-resumen-apuestas">
+                Apuestas en el paño: $0.00 USD
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MÁQUINA 3: BLACKJACK 21 CLÁSICO            -->
+        <!-- ========================================== -->
+        <div id="maquina-blackjack" class="maquina-subpantalla" style="display: none;">
+          <div class="blackjack-mesa">
+            <!-- Zona del Crupier -->
+            <div class="zona-crupier">
+              <div class="bj-etiqueta-rol">Crupier (Casa) <span id="bj-puntos-crupier" class="bj-puntos-badge">0</span></div>
+              <div class="bj-cartas-contenedor" id="bj-cartas-crupier">
+                <div class="carta-bj carta-reverso">?</div>
+                <div class="carta-bj">🂠</div>
+              </div>
+            </div>
+
+            <!-- Divisoria de Mesa -->
+            <div class="bj-linea-paño">
+              <span>EL CRUPIER DEBE PEDIR CON 16 Y PLANTARSE CON 17 &bull; PAGO BLACKJACK 3:2</span>
+            </div>
+
+            <!-- Zona del Jugador -->
+            <div class="zona-jugador">
+              <div class="bj-etiqueta-rol">Tus Cartas <span id="bj-puntos-jugador" class="bj-puntos-badge">0</span></div>
+              <div class="bj-cartas-contenedor" id="bj-cartas-jugador">
+                <div class="carta-bj">🂠</div>
+                <div class="carta-bj">🂠</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel de Control y Apuestas -->
+        <div class="controles-maquina">
+          <div class="caja-saldo-juego">
+            <span style="font-size: 11px; color: #a4b3d6; text-transform: uppercase;">Saldo de Partida</span>
+            <span id="juego-saldo-display" style="font-size: 18px; font-weight: 800; color: #ffd166;">$12,450.00 USD</span>
+          </div>
+
+          <div class="selector-apuesta">
+            <span style="font-size: 12px; color: #a4b3d6; font-weight: 700;">Apuesta:</span>
+            <button type="button" class="btn-apuesta-ajuste" id="btn-menos-apuesta">-</button>
+            <div class="caja-monto-apuesta" id="juego-apuesta-display">$10.00 USD</div>
+            <button type="button" class="btn-apuesta-ajuste" id="btn-mas-apuesta">+</button>
+          </div>
+
+          <!-- Botones de Acción Dinámicos según la máquina -->
+          <div class="acciones-juego-botones">
+            <button type="button" class="btn-accion-maquina" id="btn-girar-slot">
+              🎰 Girar Rodillos
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-girar-ruleta" style="display: none;">
+              🎡 Girar Ruleta
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-bj-repartir" style="display: none;">
+              🃏 Repartir Cartas
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-bj-pedir" style="display: none; background: #0084ff; color: #fff;">
+              + Pedir Carta
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-bj-plantarse" style="display: none; background: #c2881a; color: #fff;">
+              ✋ Plantarse
+            </button>
+          </div>
+        </div>
+
+        <!-- Cartel de Resultado / Ganancia -->
+        <div id="mensaje-resultado-juego" class="mensaje-resultado">
+          Selecciona tu apuesta y presiona el botón para jugar.
+        </div>
+
+        <!-- Barra de atajos financieros directos dentro del juego -->
+        <div class="barra-finanzas-juego">
+          <div class="finanzas-juego-info">
+            <span style="font-size: 24px;">💼</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #fff;">Gestión de Fondos en Vivo</div>
+              <div style="font-size: 12px; color: #a4b3d6;">¿Quieres retirar tus ganancias acumuladas o cargar saldo para seguir jugando?</div>
+            </div>
+          </div>
+          <div class="finanzas-juego-botones">
+            <a href="retiro.html" class="btn-finanza-accion btn-finanza-retirar" id="btn-juego-inferior-retirar">
+              🏦 Retirar Ganancias al Cajero
+            </a>
+            <a href="carga.html" class="btn-finanza-accion btn-finanza-cargar" id="btn-juego-inferior-cargar">
+              + 💳 Cargar Saldo
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+      <p><strong>Casino UCC</strong> &bull; Simuladores de Juego en HTML, CSS y JavaScript &bull; Entrega 1 &bull; Juego Responsable</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT / TYPESCRIPT -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

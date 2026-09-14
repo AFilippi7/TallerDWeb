@@ -1,0 +1,1483 @@
+/* ==========================================================================
+   ROYALE CASINO - ESTILOS CSS BASE (ENTREGA 1)
+   Solo CSS nativo organizado con variables, diseño responsive y estética premium
+   ========================================================================== */
+
+:root {
+  --color-fondo: #0a1128;
+  --color-fondo-suave: #131f42;
+  --color-tarjeta: #1c2b59;
+  --color-tarjeta-borde: #2a3c75;
+  --color-dorado: #e5a93b;
+  --color-dorado-brillo: #ffd166;
+  --color-azul-principal: #0066ff;
+  --color-azul-hover: #2979ff;
+  --color-texto: #ffffff;
+  --color-texto-secundario: #a4b3d6;
+  --color-texto-oscuro: #111c2d;
+  --color-verde-exito: #00c853;
+  --color-rojo-alerta: #ff3d00;
+  --radio-borde: 12px;
+  --sombra-tarjeta: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --fuente-principal: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fuente-principal);
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR DE CONTROL DE ENTREGA 1 (NAVEGACIÓN ENTRE PANTALLAS)
+   ========================================================================== */
+.barra-control {
+  background: #000c24;
+  border-bottom: 2px solid #1a2850;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  gap: 10px;
+}
+
+.barra-control .info-flujo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-dorado-brillo);
+}
+
+.barra-control .info-flujo strong {
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.botones-pantalla {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-pantalla {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-tarjeta-borde);
+  color: var(--color-texto-secundario);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-pantalla:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-pantalla.activa {
+  background: var(--color-azul-principal);
+  border-color: var(--color-azul-hover);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   HEADER PRINCIPAL
+   ========================================================================== */
+.header-principal {
+  background: var(--color-fondo-suave);
+  border-bottom: 1px solid var(--color-tarjeta-borde);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logo-texto {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.logo-texto span {
+  color: var(--color-dorado);
+}
+
+.header-acciones {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.caja-saldo {
+  background: #0b142b;
+  border: 1px solid var(--color-dorado);
+  padding: 6px 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.caja-saldo .etiqueta-saldo {
+  font-size: 10px;
+  color: var(--color-dorado-brillo);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.caja-saldo .monto-saldo {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.btn-header-accion {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-header-cargar {
+  background: linear-gradient(135deg, #00c853, #009624);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 200, 83, 0.3);
+}
+
+.btn-header-cargar:hover {
+  background: linear-gradient(135deg, #00e676, #00b248);
+  transform: translateY(-1px);
+}
+
+.btn-header-retirar {
+  background: #0b142b;
+  border: 1px solid var(--color-dorado);
+  color: var(--color-dorado-brillo);
+}
+
+.btn-header-retirar:hover {
+  background: var(--color-dorado);
+  color: #000;
+}
+
+/* ==========================================================================
+   SECCIONES Y VISIBILIDAD DE PANTALLAS
+   ========================================================================== */
+.pantalla {
+  display: none;
+  flex: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.pantalla.visible {
+  display: block;
+}
+
+/* ==========================================================================
+   PANTALLA 1: AUTENTICACIÓN
+   ========================================================================== */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 20px 0;
+}
+
+.auth-caja {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-tarjeta-borde);
+  border-radius: var(--radio-borde);
+  width: 100%;
+  max-width: 460px;
+  padding: 36px 30px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.auth-titulo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.auth-subtitulo {
+  font-size: 13px;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pestañas-auth {
+  display: flex;
+  border-bottom: 1px solid var(--color-tarjeta-borde);
+  margin-bottom: 20px;
+}
+
+.tab-auth {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tab-auth.activa {
+  color: var(--color-dorado);
+  border-bottom-color: var(--color-dorado);
+}
+
+.grupo-formulario {
+  margin-bottom: 18px;
+}
+
+.grupo-formulario label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-texto-secundario);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.grupo-formulario input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #0e1730;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.grupo-formulario input:focus {
+  border-color: var(--color-azul-principal);
+}
+
+.btn-principal {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--color-azul-principal), #0044cc);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+  transition: transform 0.1s, background 0.2s;
+}
+
+.btn-principal:hover {
+  background: linear-gradient(135deg, var(--color-azul-hover), var(--color-azul-principal));
+}
+
+.btn-principal:active {
+  transform: scale(0.99);
+}
+
+.auth-nota {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px dashed var(--color-tarjeta-borde);
+}
+
+/* ==========================================================================
+   PANTALLA 2: CATÁLOGO DE JUEGOS
+   ========================================================================== */
+.catalogo-header {
+  margin-bottom: 24px;
+}
+
+.banner-destacado {
+  background: linear-gradient(135deg, #182a5c, #09132c);
+  border: 1px solid var(--color-dorado);
+  border-radius: var(--radio-borde);
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.banner-destacado h2 {
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.banner-destacado p {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+  max-width: 600px;
+}
+
+.indicador-jackpot {
+  background: #000c24;
+  border: 1px solid var(--color-dorado-brillo);
+  border-radius: 10px;
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.indicador-jackpot span {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-dorado-brillo);
+}
+
+.indicador-jackpot .jackpot-numero {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* Filtros y buscador */
+.barra-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-fondo-suave);
+  padding: 14px 18px;
+  border-radius: var(--radio-borde);
+  margin-bottom: 20px;
+  border: 1px solid var(--color-tarjeta-borde);
+}
+
+.filtro-categorias {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-categoria {
+  background: #0b142b;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: var(--color-texto-secundario);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-categoria:hover, .btn-categoria.activo {
+  background: var(--color-azul-principal);
+  border-color: var(--color-azul-principal);
+  color: #fff;
+}
+
+.buscador-input {
+  background: #0b142b;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  min-width: 220px;
+}
+
+/* Requerimiento: "hacemos click al nombre de los juegos que estan cargados" */
+.aviso-click-nombre {
+  background: rgba(229, 169, 59, 0.15);
+  border: 1px solid var(--color-dorado);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--color-dorado-brillo);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cuadricula-juegos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-juego {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-tarjeta-borde);
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sombra-tarjeta);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-dorado);
+}
+
+.tarjeta-juego img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #000;
+}
+
+.juego-cuerpo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+/* Enlace/Nombre del juego solicitado */
+.nombre-juego {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.nombre-juego:hover {
+  color: var(--color-dorado-brillo);
+  text-decoration: underline;
+}
+
+.juego-detalles {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--color-texto-secundario);
+  margin-bottom: 12px;
+}
+
+.juego-detalles .badge-categoria {
+  background: #0e1730;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--color-dorado);
+  font-weight: 700;
+}
+
+.btn-jugar-tarjeta {
+  width: 100%;
+  padding: 9px;
+  background: var(--color-azul-principal);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-jugar-tarjeta:hover {
+  background: var(--color-azul-hover);
+}
+
+/* ==========================================================================
+   PANTALLA 3: PANTALLA DE JUEGO (MÁQUINAS PROGRAMADAS)
+   ========================================================================== */
+.juego-barra-superior {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-tarjeta-borde);
+}
+
+.btn-volver {
+  background: #0b142b;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: var(--color-dorado);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.btn-volver:hover {
+  background: var(--color-tarjeta);
+}
+
+.juego-info-titulo h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.juego-info-titulo p {
+  font-size: 12px;
+  color: var(--color-texto-secundario);
+}
+
+.alternador-modo {
+  display: flex;
+  background: #0b142b;
+  border-radius: 8px;
+  border: 1px solid var(--color-tarjeta-borde);
+  padding: 2px;
+}
+
+.btn-modo {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: var(--color-texto-secundario);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-modo.activo {
+  background: var(--color-azul-principal);
+  color: #fff;
+}
+
+.juego-acciones-financieras {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-juego-financiero {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-juego-retirar {
+  background: linear-gradient(135deg, #e5a93b, #c2881a);
+  color: #000;
+  box-shadow: 0 2px 10px rgba(229, 169, 59, 0.3);
+}
+
+.btn-juego-retirar:hover {
+  background: linear-gradient(135deg, #ffd166, #e5a93b);
+  transform: translateY(-1px);
+}
+
+.btn-juego-cargar {
+  background: linear-gradient(135deg, #00c853, #009624);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 200, 83, 0.3);
+}
+
+.btn-juego-cargar:hover {
+  background: linear-gradient(135deg, #00e676, #00b248);
+  transform: translateY(-1px);
+}
+
+/* Contenedor de la máquina */
+.maquina-contenedor {
+  background: #0b142b;
+  border: 2px solid var(--color-tarjeta-borde);
+  border-radius: var(--radio-borde);
+  padding: 24px;
+  box-shadow: var(--sombra-tarjeta);
+  margin-bottom: 24px;
+}
+
+/* Máquina 1: Tragamonedas */
+.tragamonedas-pantalla {
+  background: #040919;
+  border: 3px solid var(--color-dorado);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.rodillos-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.rodillo-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.simbolo-ranura {
+  background: #0c1836;
+  border: 1px solid #1f3263;
+  border-radius: 8px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  user-select: none;
+}
+
+/* Máquina 2: Ruleta Europea Completa con Múltiples Apuestas */
+.ruleta-pantalla {
+  background: radial-gradient(circle at center, #074e2d 0%, #032b17 100%);
+  border: 3px solid var(--color-dorado);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.ruleta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ruleta-historial-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.ruleta-historial-bolas {
+  display: flex;
+  gap: 6px;
+}
+
+.bola-historial {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.bola-historial.rojo { background: #b71c1c; }
+.bola-historial.negro { background: #1a1a1a; }
+.bola-historial.verde { background: #1b5e20; }
+
+.ruleta-animacion-caja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0 16px;
+}
+
+.ruleta-disco {
+  font-size: 42px;
+  transition: transform 1s cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+
+.ruleta-disco.girando {
+  animation: girarRueda 1.2s infinite linear;
+}
+
+@keyframes girarRueda {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ruleta-resultado {
+  font-size: 32px;
+  font-weight: 900;
+  padding: 8px 24px;
+  background: #000;
+  border: 2px solid var(--color-dorado-brillo);
+  border-radius: 10px;
+  display: inline-block;
+  min-width: 170px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.ruleta-resultado.rojo { color: #ff5252; }
+.ruleta-resultado.negro { color: #ffffff; }
+.ruleta-resultado.verde { color: #69f0ae; }
+
+/* Selector de Fichas y Acciones de Mesa */
+.ruleta-barra-fichas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fichas-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-ficha {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 12px;
+  cursor: pointer;
+  border: 2px dashed #ffffff;
+  color: #fff;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+.btn-ficha[data-valor="5"] { background: #d32f2f; }
+.btn-ficha[data-valor="10"] { background: #1976d2; }
+.btn-ficha[data-valor="25"] { background: #388e3c; }
+.btn-ficha[data-valor="50"] { background: #7b1fa2; }
+.btn-ficha[data-valor="100"] { background: #000000; border-color: #ffd166; color: #ffd166; }
+
+.btn-ficha:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.btn-ficha.activa {
+  border: 3px solid #ffd166;
+  box-shadow: 0 0 12px #ffd166;
+  transform: scale(1.1);
+}
+
+.ruleta-resumen-apuestas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.ruleta-resumen-apuestas strong {
+  color: var(--color-dorado-brillo);
+}
+
+.btn-accion-secundario {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-accion-secundario:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--color-dorado);
+}
+
+/* Paño de Apuestas Clásico de Ruleta (Table Felt) */
+.ruleta-pano-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.ruleta-tablero {
+  min-width: 780px;
+  background: #052c1a;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: auto auto auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* Casilla genérica */
+.ruleta-casilla {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+.ruleta-casilla:hover {
+  filter: brightness(1.25);
+  outline: 2px solid #ffd166;
+  z-index: 2;
+}
+
+.ruleta-casilla.ganador-resaltado {
+  animation: pulsoGanador 0.8s infinite alternate;
+  z-index: 10;
+  box-shadow: 0 0 20px #ffd166 !important;
+}
+
+@keyframes pulsoGanador {
+  0% { transform: scale(1); outline: 3px solid #ffd166; }
+  100% { transform: scale(1.08); outline: 4px solid #fff; }
+}
+
+/* Cero (Verde) */
+.ruleta-casilla.cero {
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  background: #1b5e20;
+  font-size: 22px;
+  border-top-left-radius: 6px;
+}
+
+/* Grid de números 1 a 36 */
+.ruleta-grid-numeros {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 44px);
+}
+
+.casilla-num {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.casilla-num.rojo { background: #b71c1c; }
+.casilla-num.negro { background: #1a1a1a; }
+
+/* Columnas (2:1) */
+.ruleta-col-apuestas {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.ruleta-col-apuestas .col-apuesta {
+  flex: 1;
+  font-size: 12px;
+  background: #093f26;
+}
+
+/* Docenas */
+.ruleta-fila-docenas {
+  grid-column: 2 / span 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 38px;
+}
+
+.ruleta-casilla.docena {
+  background: #0b452a;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Apuestas exteriores (1-18, PAR, ROJO, NEGRO, IMPAR, 19-36) */
+.ruleta-fila-exteriores {
+  grid-column: 2 / span 2;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  height: 42px;
+}
+
+.ruleta-casilla.exterior {
+  background: #083822;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ruleta-casilla.exterior.rojo { background: #b71c1c; }
+.ruleta-casilla.exterior.negro { background: #1a1a1a; }
+.ruleta-casilla.exterior.par { background: #0d47a1; }
+.ruleta-casilla.exterior.impar { background: #4a148c; }
+
+/* Ficha colocada sobre la casilla */
+.ficha-badge {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #ffe082 0%, #ffb300 100%);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 900;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 2px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ficha-badge.visible {
+  display: flex;
+}
+
+/* Desglose de apuestas colocadas en texto */
+.ruleta-lista-apuestas-contenedor {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ruleta-chips-activas {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.chip-apuesta-tag {
+  background: #002214;
+  border: 1px solid var(--color-dorado);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip-apuesta-tag strong {
+  color: var(--color-dorado-brillo);
+}
+
+.chip-apuesta-tag .btn-quitar-apuesta {
+  cursor: pointer;
+  color: #ff5252;
+  font-weight: 900;
+  margin-left: 2px;
+}
+
+/* Máquina 3: Blackjack */
+.blackjack-pantalla {
+  background: #053b26;
+  border: 3px solid var(--color-dorado);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zona-cartas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.fila-cartas {
+  display: flex;
+  gap: 10px;
+  min-height: 90px;
+}
+
+.carta-item {
+  background: #ffffff;
+  color: #111;
+  width: 60px;
+  height: 85px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px;
+  font-weight: 900;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.carta-item.roja {
+  color: #d32f2f;
+}
+
+.carta-oculta {
+  background: #1a2850;
+  color: #ffd166;
+  width: 60px;
+  height: 85px;
+  border-radius: 6px;
+  border: 1px solid #ffd166;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* Panel de controles de juego (Apuesta y Acción) */
+.controles-juego {
+  background: var(--color-tarjeta);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.selector-apuesta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selector-apuesta span {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-texto-secundario);
+  font-weight: 700;
+}
+
+.btn-ajuste-apuesta {
+  width: 34px;
+  height: 34px;
+  background: #0b142b;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.caja-monto-apuesta {
+  background: #040919;
+  border: 1px solid var(--color-dorado);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-dorado-brillo);
+}
+
+.btn-accion-maquina {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--color-dorado), #b37e1b);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(229, 169, 59, 0.4);
+}
+
+.btn-accion-maquina:hover {
+  background: linear-gradient(135deg, var(--color-dorado-brillo), var(--color-dorado));
+}
+
+.mensaje-resultado {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(0, 102, 255, 0.15);
+  border: 1px solid var(--color-azul-principal);
+  color: #fff;
+}
+
+.mensaje-resultado.ganador {
+  background: rgba(0, 200, 83, 0.2);
+  border-color: var(--color-verde-exito);
+  color: #b9f6ca;
+}
+
+/* Barra inferior de atajos financieros desde el juego */
+.barra-finanzas-juego {
+  margin-top: 18px;
+  background: #060e22;
+  border: 1px solid var(--color-tarjeta-borde);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.finanzas-juego-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.finanzas-juego-botones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-finanza-accion {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-finanza-retirar {
+  background: #101c3d;
+  border: 1px solid var(--color-dorado);
+  color: var(--color-dorado-brillo);
+}
+
+.btn-finanza-retirar:hover {
+  background: var(--color-dorado);
+  color: #000;
+}
+
+.btn-finanza-cargar {
+  background: linear-gradient(135deg, #00c853, #009624);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 200, 83, 0.3);
+}
+
+.btn-finanza-cargar:hover {
+  background: linear-gradient(135deg, #00e676, #00b248);
+}
+
+/* ==========================================================================
+   PANTALLAS DE CAJERO (CARGAR DINERO Y RETIRO)
+   ========================================================================== */
+.cajero-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.cajero-banner-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0b142b;
+  border: 1px solid var(--color-tarjeta-borde);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--color-texto-secundario);
+}
+
+.btn-switch-cajero {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-tarjeta-borde);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-switch-cajero:hover {
+  background: var(--color-azul-principal);
+  border-color: var(--color-azul-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+.cajero-resumen-saldos {
+  display: flex;
+  justify-content: space-between;
+  background: #0e1730;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-tarjeta-borde);
+  margin-bottom: 16px;
+}
+
+.select-cajero {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0e1730;
+  border: 1px solid #2a3c75;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.select-cajero:focus {
+  border-color: var(--color-azul-principal);
+}
+
+.montos-rapidos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btn-monto-rapido {
+  background: #0e1730;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: var(--color-texto);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-monto-rapido:hover {
+  border-color: var(--color-dorado);
+  color: var(--color-dorado-brillo);
+}
+
+.btn-monto-rapido.activa {
+  background: rgba(229, 169, 59, 0.15);
+  border-color: var(--color-dorado);
+  color: var(--color-dorado-brillo);
+  font-weight: 800;
+}
+
+.acciones-post-carga {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.btn-accion-post {
+  flex: 1;
+  min-width: 120px;
+  background: #0e1730;
+  border: 1px solid var(--color-tarjeta-borde);
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-accion-post:hover {
+  background: var(--color-azul-principal);
+  border-color: var(--color-azul-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+.caja-garantias-cajero {
+  background: #0e1730;
+  border: 1px solid var(--color-tarjeta-borde);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* ==========================================================================
+   PANTALLA 4: CAJERO SEGURO (RETIROS)
+   ========================================================================== */
+.cajero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .cajero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta-cajero {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-tarjeta-borde);
+  border-radius: var(--radio-borde);
+  padding: 24px;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.tarjeta-cajero h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.tabla-historial {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.tabla-historial th {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--color-tarjeta-borde);
+  color: var(--color-texto-secundario);
+}
+
+.tabla-historial td {
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer-principal {
+  background: #060b19;
+  border-top: 1px solid var(--color-tarjeta-borde);
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-texto-secundario);
+  margin-top: auto;
+}
+
+.footer-principal strong {
+  color: var(--color-dorado);
+}

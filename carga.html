@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cargar Dinero - Casino UCC</title>
+    <meta name="description" content="Pantalla de carga y depósito inmediato de fondos en Casino UCC con múltiples métodos de pago." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ENTRE HTMLs -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Casino UCC:</strong> Arquitectura Modular de Archivos HTML</span>
+      </div>
+      <nav class="botones-pantalla">
+        <a href="index.html" class="btn-pantalla">1. Autenticación</a>
+        <a href="catalogo.html" class="btn-pantalla">2. Catálogo de Juegos</a>
+        <a href="juego.html" class="btn-pantalla">3. Pantalla de Juego</a>
+        <a href="carga.html" class="btn-pantalla activa">4. Cargar Dinero</a>
+        <a href="retiro.html" class="btn-pantalla">5. Retirar Dinero</a>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <a href="catalogo.html" class="logo-contenedor">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </a>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <a href="carga.html" class="btn-header-accion btn-header-cargar" style="border: 2px solid #fff;" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </a>
+        <a href="retiro.html" class="btn-header-accion btn-header-retirar" title="Retirar fondos a tu cuenta">
+          🏦 Retirar
+        </a>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PÁGINA: CARGAR DINERO (DEPÓSITO INMEDIATO)                        -->
+    <!-- ================================================================= -->
+    <main class="pantalla visible" style="display: block;">
+      <div class="cajero-encabezado">
+        <div>
+          <h1 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px;">Cargar Dinero en Cuenta</h1>
+          <p style="font-size: 13px; color: #a4b3d6;">Depósitos instantáneos y 100% seguros sin comisiones adicionales.</p>
+        </div>
+        <div class="cajero-banner-switch">
+          <span>¿Prefieres retirar tus fondos?</span>
+          <a href="retiro.html" class="btn-switch-cajero" id="btn-switch-a-retiros">
+            🏦 Ir a Retirar Dinero
+          </a>
+        </div>
+      </div>
+
+      <div class="cajero-grid">
+        <!-- Formulario de Carga de Dinero -->
+        <div class="tarjeta-cajero">
+          <h3>Depósito Inmediato</h3>
+          
+          <div class="cajero-resumen-saldos">
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Saldo Actual Disponible:</div>
+              <div id="cargar-saldo-display" style="font-size: 22px; font-weight: 800; color: #ffd166;">$12,450.00 USD</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Estado de Cuenta:</div>
+              <div style="font-size: 13px; font-weight: 800; color: #69f0ae;">✓ Verificada VIP</div>
+            </div>
+          </div>
+
+          <form id="form-cargar-dinero">
+            <!-- Selector de Método de Pago -->
+            <div class="grupo-formulario">
+              <label for="cargar-metodo">Método de Pago</label>
+              <select id="cargar-metodo" class="select-cajero">
+                <option value="Tarjeta de Débito / Crédito (Visa / Mastercard)">💳 Tarjeta Débito / Crédito (Visa, Mastercard, Cabal)</option>
+                <option value="Transferencia Bancaria Inmediata (CBU / CVU)">🏦 Transferencia Inmediata (CBU / CVU / Alias)</option>
+                <option value="Mercado Pago (QR / Saldo)">📱 Mercado Pago (Transferencia / QR)</option>
+                <option value="Binance Pay / USDT (Tether TRC-20)">⚡ Cripto USDT Tether (TRC-20 / Binance Pay)</option>
+                <option value="Bitcoin (BTC) / Ethereum (ETH)">🪙 Criptomonedas (BTC / ETH)</option>
+              </select>
+            </div>
+
+            <!-- Botones de Montos Rápidos -->
+            <div class="grupo-formulario">
+              <label>Selecciona un Monto Rápido</label>
+              <div class="montos-rapidos-grid">
+                <button type="button" class="btn-monto-rapido" data-monto="25">+$25</button>
+                <button type="button" class="btn-monto-rapido" data-monto="50">+$50</button>
+                <button type="button" class="btn-monto-rapido activa" data-monto="100">+$100</button>
+                <button type="button" class="btn-monto-rapido" data-monto="250">+$250</button>
+                <button type="button" class="btn-monto-rapido" data-monto="500">+$500</button>
+                <button type="button" class="btn-monto-rapido" data-monto="1000">+$1,000</button>
+              </div>
+            </div>
+
+            <!-- Input Monto -->
+            <div class="grupo-formulario">
+              <label for="cargar-monto">Monto a Cargar (USD)</label>
+              <input type="number" id="cargar-monto" min="10" max="50000" step="5" value="100" required />
+              <span style="font-size: 11px; color: #a4b3d6; margin-top: 4px; display: block;">Mínimo $10 USD • Acreditación en 1 segundo</span>
+            </div>
+
+            <!-- Promociones y Bonos -->
+            <div class="grupo-formulario">
+              <label for="cargar-bono">Bono Promocional Opcional</label>
+              <select id="cargar-bono" class="select-cajero">
+                <option value="bono-100">🎁 Bono Bienvenida Casino (+100% adicional)</option>
+                <option value="bono-25">💎 Bono VIP Recarga (+25% saldo limpio)</option>
+                <option value="ninguno">Sin Bono (Solo acreditar mi monto ingresado)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-principal" id="btn-submit-cargar" style="background: linear-gradient(135deg, #00c853, #009624);">
+              💳 Confirmar Carga de Dinero
+            </button>
+          </form>
+
+          <!-- Cartel de resultado de la carga -->
+          <div id="mensaje-cargar-dinero" class="mensaje-resultado" style="display: none; margin-top: 14px;"></div>
+
+          <!-- Acciones directas post-carga -->
+          <div id="acciones-post-carga" class="acciones-post-carga" style="display: none;">
+            <a href="juego.html" class="btn-accion-post" id="btn-post-ir-juego">
+              🎰 Ir a los Juegos
+            </a>
+            <a href="catalogo.html" class="btn-accion-post" id="btn-post-ir-catalogo">
+              📋 Catálogo Completo
+            </a>
+            <a href="retiro.html" class="btn-accion-post" id="btn-post-ir-retiros">
+              🏦 Ir a Retiros
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Historial de Cargas y Garantías -->
+        <div class="tarjeta-cajero">
+          <h3>Historial de Cargas Realizadas</h3>
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Monto</th>
+                <th>Método</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-historial-cargas">
+              <tr>
+                <td>DEP-9412</td>
+                <td>$250.00 USD</td>
+                <td>Mercado Pago</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>Ayer 15:10</td>
+              </tr>
+              <tr>
+                <td>DEP-8830</td>
+                <td>$500.00 USD</td>
+                <td>Transferencia CBU</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>10/09/2025</td>
+              </tr>
+              <tr>
+                <td>DEP-7105</td>
+                <td>$100.00 USD</td>
+                <td>Tarjeta Débito</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>05/09/2025</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="caja-garantias-cajero" style="margin-top: 24px;">
+            <div style="font-size: 13px; font-weight: 800; color: #ffd166; margin-bottom: 8px;">🛡️ Garantía Casino UCC</div>
+            <ul style="font-size: 12px; color: #a4b3d6; list-style-position: inside; display: flex; flex-direction: column; gap: 6px;">
+              <li>Fondos custodiados en cuentas bancarias segregadas.</li>
+              <li>Sin comisiones ocultas ni costos de procesamiento.</li>
+              <li>Soporte VIP disponible las 24 horas del día.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+      <p><strong>Casino UCC</strong> &bull; Portal de Carga de Dinero &bull; Licencia Oficial UCC &bull; Transacciones Seguras SSL</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT / TYPESCRIPT -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

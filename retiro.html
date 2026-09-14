@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retiro de Dinero - Casino UCC</title>
+    <meta name="description" content="Cajero financiero y retiro seguro de fondos en Casino UCC con acreditación auditada." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ENTRE HTMLs -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Casino UCC:</strong> Arquitectura Modular de Archivos HTML</span>
+      </div>
+      <nav class="botones-pantalla">
+        <a href="index.html" class="btn-pantalla">1. Autenticación</a>
+        <a href="catalogo.html" class="btn-pantalla">2. Catálogo de Juegos</a>
+        <a href="juego.html" class="btn-pantalla">3. Pantalla de Juego</a>
+        <a href="carga.html" class="btn-pantalla">4. Cargar Dinero</a>
+        <a href="retiro.html" class="btn-pantalla activa">5. Retirar Dinero</a>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <a href="catalogo.html" class="logo-contenedor">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </a>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <a href="carga.html" class="btn-header-accion btn-header-cargar" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </a>
+        <a href="retiro.html" class="btn-header-accion btn-header-retirar" style="border: 2px solid var(--color-dorado);" title="Retirar fondos a tu cuenta">
+          🏦 Retirar
+        </a>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PÁGINA: RETIRO DE DINERO (CAJERO SEGURO)                          -->
+    <!-- ================================================================= -->
+    <main class="pantalla visible" style="display: block;">
+      <div class="cajero-encabezado">
+        <div>
+          <h1 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px;">Cajero Financiero Seguro</h1>
+          <p style="font-size: 13px; color: #a4b3d6;">Gestiona tus retiros auditados con acreditación inmediata.</p>
+        </div>
+        <div class="cajero-banner-switch">
+          <span>¿Necesitas recargar fondos?</span>
+          <a href="carga.html" class="btn-switch-cajero" id="btn-switch-a-cargar">
+            💳 Ir a Cargar Dinero
+          </a>
+        </div>
+      </div>
+
+      <div class="cajero-grid">
+        <!-- Formulario de Solicitud de Retiro -->
+        <div class="tarjeta-cajero">
+          <h3>Solicitud de Retiro de Fondos</h3>
+          
+          <div class="cajero-resumen-saldos">
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Saldo Total en Cuenta:</div>
+              <div id="cajero-saldo-total" style="font-size: 18px; font-weight: 800; color: #fff;">$12,450.00 USD</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Saldo Retirable Auditado:</div>
+              <div id="cajero-saldo-retirable" style="font-size: 18px; font-weight: 800; color: #69f0ae;">$11,800.00 USD</div>
+            </div>
+          </div>
+
+          <form id="form-retiro">
+            <div class="grupo-formulario">
+              <label for="retiro-cuenta">Método o Cuenta de Destino</label>
+              <select id="retiro-cuenta" class="select-cajero">
+                <option value="Transferencia CBU / CVU Bancaria">🏦 Transferencia Bancaria (CBU / CVU)</option>
+                <option value="Mercado Pago (Transferencia CVU)">📱 Mercado Pago (CVU / Alias)</option>
+                <option value="Billetera USDT Tether (TRC-20)">⚡ Billetera Cripto USDT (TRC-20 / Binance)</option>
+                <option value="Transferencia Internacional SWIFT">🌐 Transferencia Bancaria Internacional SWIFT</option>
+              </select>
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="retiro-monto">Monto a Retirar (USD)</label>
+              <input type="number" id="retiro-monto" min="10" max="50000" step="10" value="100" required />
+              <span style="font-size: 11px; color: #a4b3d6; margin-top: 4px; display: block;">Monto mínimo: $10.00 USD • Sin comisiones operativas</span>
+            </div>
+
+            <button type="submit" class="btn-principal" id="btn-submit-retiro">
+              🏦 Solicitar Retiro Inmediato
+            </button>
+          </form>
+
+          <div id="mensaje-cajero" class="mensaje-resultado" style="display: none; margin-top: 14px;"></div>
+
+          <!-- Acciones de Navegación Rápida -->
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <a href="juego.html" class="btn-accion-post">
+              🎰 Volver a Jugar
+            </a>
+            <a href="catalogo.html" class="btn-accion-post">
+              📋 Catálogo de Juegos
+            </a>
+            <a href="carga.html" class="btn-accion-post" style="background: rgba(0, 200, 83, 0.2); border-color: #00c853;">
+              + 💳 Cargar Saldo
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Historial de Retiros y Garantías -->
+        <div class="tarjeta-cajero">
+          <h3>Historial de Retiros Auditados</h3>
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Monto</th>
+                <th>Destino</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-historial-retiros">
+              <tr>
+                <td>REQ-8492</td>
+                <td>$350.00 USD</td>
+                <td>Transferencia CBU</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Completado</span></td>
+                <td>Ayer 18:30</td>
+              </tr>
+              <tr>
+                <td>REQ-8104</td>
+                <td>$1,200.00 USD</td>
+                <td>Billetera USDT</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Completado</span></td>
+                <td>12/09/2025</td>
+              </tr>
+              <tr>
+                <td>REQ-7789</td>
+                <td>$500.00 USD</td>
+                <td>Mercado Pago</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Completado</span></td>
+                <td>08/09/2025</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="caja-garantias-cajero" style="margin-top: 24px;">
+            <div style="font-size: 13px; font-weight: 800; color: #ffd166; margin-bottom: 8px;">🛡️ Garantía de Retiros Casino UCC</div>
+            <ul style="font-size: 12px; color: #a4b3d6; list-style-position: inside; display: flex; flex-direction: column; gap: 6px;">
+              <li>Retiros procesados las 24 horas del día de forma automatizada.</li>
+              <li>Acreditación promedio menor a 15 minutos en CBU y billeteras digitales.</li>
+              <li>Cumplimiento estricto con las regulaciones de seguridad financiera.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+      <p><strong>Casino UCC</strong> &bull; Cajero Seguro y Retiros Auditados &bull; Licencia Oficial UCC &bull; Cumplimiento KYC/AML</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT / TYPESCRIPT -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

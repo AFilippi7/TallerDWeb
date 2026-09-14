@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Juegos - Casino UCC</title>
+    <meta name="description" content="Menú y catálogo completo de juegos en Casino UCC: Tragamonedas, Ruletas y Blackjack." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ENTRE HTMLs -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Casino UCC:</strong> Arquitectura Modular de Archivos HTML</span>
+      </div>
+      <nav class="botones-pantalla">
+        <a href="index.html" class="btn-pantalla">1. Autenticación</a>
+        <a href="catalogo.html" class="btn-pantalla activa">2. Catálogo de Juegos</a>
+        <a href="juego.html" class="btn-pantalla">3. Pantalla de Juego</a>
+        <a href="carga.html" class="btn-pantalla">4. Cargar Dinero</a>
+        <a href="retiro.html" class="btn-pantalla">5. Retirar Dinero</a>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <a href="catalogo.html" class="logo-contenedor">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </a>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <a href="carga.html" class="btn-header-accion btn-header-cargar" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </a>
+        <a href="retiro.html" class="btn-header-accion btn-header-retirar" title="Retirar fondos a tu cuenta">
+          🏦 Retirar
+        </a>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PÁGINA: CATÁLOGO DE JUEGOS                                       -->
+    <!-- ================================================================= -->
+    <main class="pantalla visible" style="display: block;">
+      
+      <!-- Banner Financiero Informativo -->
+      <div style="background: linear-gradient(135deg, #0b1736, #0e204c); border: 1px solid var(--color-tarjeta-borde); border-radius: 12px; padding: 18px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h2 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px;">🎮 Catálogo Oficial de Juegos</h2>
+          <p style="font-size: 13px; color: #a4b3d6;">Haz click en el nombre o imagen de cualquier juego para iniciar tu sesión de juego inmediatamente.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="carga.html" class="btn-header-accion btn-header-cargar" style="padding: 10px 18px;">
+            + 💳 Cargar Saldo
+          </a>
+          <a href="retiro.html" class="btn-header-accion btn-header-retirar" style="padding: 10px 18px;">
+            🏦 Retirar Ganancias
+          </a>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="catalogo-filtros-barra">
+        <div class="grupo-filtros">
+          <button type="button" class="btn-filtro activo" data-categoria="todos">Todos (8)</button>
+          <button type="button" class="btn-filtro" data-categoria="slots">Tragamonedas (4)</button>
+          <button type="button" class="btn-filtro" data-categoria="ruleta">Ruletas (2)</button>
+          <button type="button" class="btn-filtro" data-categoria="blackjack">Blackjack (2)</button>
+          <button type="button" class="btn-filtro" data-categoria="jackpot">Jackpots</button>
+        </div>
+        <div class="caja-buscador">
+          <input type="text" id="buscador-juegos" placeholder="Buscar por nombre de juego o proveedor..." />
+        </div>
+      </div>
+
+      <!-- Grid con los 8 Juegos -->
+      <div class="grid-juegos" id="contenedor-tarjetas-juegos">
+        
+        <!-- Juego 1: Gates of Olympus (Tragamonedas) -->
+        <article class="tarjeta-juego" data-id="gates-of-olympus" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Gates of Olympus" data-proveedor="Pragmatic Play" data-rtp="96.50%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Gates of Olympus" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=gates-of-olympus" class="nombre-juego" data-id="gates-of-olympus" title="Hacer click para jugar a Gates of Olympus">
+                Gates of Olympus
+              </a>
+              <div class="juego-detalles">
+                <span>Pragmatic Play</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.50%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <a href="juego.html?id=gates-of-olympus" class="btn-jugar-tarjeta" data-id="gates-of-olympus">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 2: Ruleta Europea VIP (Ruleta) -->
+        <article class="tarjeta-juego" data-id="ruleta-europea-vip" data-tipo-maquina="ruleta" data-categoria="ruleta" data-titulo="Ruleta Europea VIP" data-proveedor="Evolution Gaming" data-rtp="97.30%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=600&auto=format&fit=crop&q=80" alt="Ruleta Europea VIP" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=ruleta-europea-vip" class="nombre-juego" data-id="ruleta-europea-vip" title="Hacer click para jugar a Ruleta Europea VIP">
+                Ruleta Europea VIP
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Ruleta</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 97.30%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <a href="juego.html?id=ruleta-europea-vip" class="btn-jugar-tarjeta" data-id="ruleta-europea-vip">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 3: VIP Blackjack Diamond (Blackjack) -->
+        <article class="tarjeta-juego" data-id="vip-blackjack-diamond" data-tipo-maquina="blackjack" data-categoria="blackjack" data-titulo="VIP Blackjack Diamond" data-proveedor="Playtech" data-rtp="99.28%" data-min="25">
+          <img src="https://images.unsplash.com/photo-1541278107931-e006523892df?w=600&auto=format&fit=crop&q=80" alt="VIP Blackjack Diamond" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=vip-blackjack-diamond" class="nombre-juego" data-id="vip-blackjack-diamond" title="Hacer click para jugar a VIP Blackjack Diamond">
+                VIP Blackjack Diamond
+              </a>
+              <div class="juego-detalles">
+                <span>Playtech</span>
+                <span class="badge-categoria">Blackjack</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 99.28%</span>
+                <span>Min: $25</span>
+              </div>
+            </div>
+            <a href="juego.html?id=vip-blackjack-diamond" class="btn-jugar-tarjeta" data-id="vip-blackjack-diamond">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 4: Sweet Bonanza 1000 (Tragamonedas) -->
+        <article class="tarjeta-juego" data-id="sweet-bonanza-1000" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Sweet Bonanza 1000" data-proveedor="Pragmatic Play" data-rtp="96.53%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600&auto=format&fit=crop&q=80" alt="Sweet Bonanza 1000" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=sweet-bonanza-1000" class="nombre-juego" data-id="sweet-bonanza-1000" title="Hacer click para jugar a Sweet Bonanza 1000">
+                Sweet Bonanza 1000
+              </a>
+              <div class="juego-detalles">
+                <span>Pragmatic Play</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.53%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <a href="juego.html?id=sweet-bonanza-1000" class="btn-jugar-tarjeta" data-id="sweet-bonanza-1000">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 5: Mega Moolah Safari (Jackpot) -->
+        <article class="tarjeta-juego" data-id="mega-moolah-safari" data-tipo-maquina="slot" data-categoria="jackpot" data-titulo="Mega Moolah Safari" data-proveedor="Microgaming" data-rtp="94.80%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80" alt="Mega Moolah Safari" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=mega-moolah-safari" class="nombre-juego" data-id="mega-moolah-safari" title="Hacer click para jugar a Mega Moolah Safari">
+                Mega Moolah Safari
+              </a>
+              <div class="juego-detalles">
+                <span>Microgaming</span>
+                <span class="badge-categoria">Jackpot</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 94.80%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <a href="juego.html?id=mega-moolah-safari" class="btn-jugar-tarjeta" data-id="mega-moolah-safari">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 6: Lightning Roulette Deluxe (Ruleta) -->
+        <article class="tarjeta-juego" data-id="lightning-roulette-deluxe" data-tipo-maquina="ruleta" data-categoria="ruleta" data-titulo="Lightning Roulette Deluxe" data-proveedor="Evolution Gaming" data-rtp="97.10%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Lightning Roulette Deluxe" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=lightning-roulette-deluxe" class="nombre-juego" data-id="lightning-roulette-deluxe" title="Hacer click para jugar a Lightning Roulette Deluxe">
+                Lightning Roulette Deluxe
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Ruleta</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 97.10%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <a href="juego.html?id=lightning-roulette-deluxe" class="btn-jugar-tarjeta" data-id="lightning-roulette-deluxe">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 7: Book of Dead Secrets (Tragamonedas) -->
+        <article class="tarjeta-juego" data-id="book-of-dead-secrets" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Book of Dead Secrets" data-proveedor="Play'n GO" data-rtp="96.21%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80" alt="Book of Dead Secrets" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=book-of-dead-secrets" class="nombre-juego" data-id="book-of-dead-secrets" title="Hacer click para jugar a Book of Dead Secrets">
+                Book of Dead Secrets
+              </a>
+              <div class="juego-detalles">
+                <span>Play'n GO</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.21%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <a href="juego.html?id=book-of-dead-secrets" class="btn-jugar-tarjeta" data-id="book-of-dead-secrets">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+        <!-- Juego 8: Infinite Blackjack Pro (Blackjack) -->
+        <article class="tarjeta-juego" data-id="infinite-blackjack-pro" data-tipo-maquina="blackjack" data-categoria="blackjack" data-titulo="Infinite Blackjack Pro" data-proveedor="Evolution Gaming" data-rtp="99.47%" data-min="20">
+          <img src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=600&auto=format&fit=crop&q=80" alt="Infinite Blackjack Pro" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="juego.html?id=infinite-blackjack-pro" class="nombre-juego" data-id="infinite-blackjack-pro" title="Hacer click para jugar a Infinite Blackjack Pro">
+                Infinite Blackjack Pro
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Blackjack</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 99.47%</span>
+                <span>Min: $20</span>
+              </div>
+            </div>
+            <a href="juego.html?id=infinite-blackjack-pro" class="btn-jugar-tarjeta" data-id="infinite-blackjack-pro">
+              Jugar Ahora
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+      <p><strong>Casino UCC</strong> &bull; Portal de Juegos en HTML, CSS y JavaScript &bull; Licencia Oficial UCC &bull; Juego Responsable (+18)</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT / TYPESCRIPT -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

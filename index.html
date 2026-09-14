@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casino UCC - Entrega 1 (HTML, CSS y JavaScript)</title>
+    <meta name="description" content="Plataforma de Casino UCC con autenticación, catálogo de juegos con navegación interactiva al hacer click en el nombre, y simuladores de juego programados en JavaScript." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR DE CONTROL: Flujo de Entrega 1 -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Entrega 1:</strong> HTML semántico, CSS y JavaScript puro</span>
+      </div>
+      <nav class="botones-pantalla">
+        <button type="button" class="btn-pantalla activa" data-destino="autenticacion">
+          1. Autenticación
+        </button>
+        <button type="button" class="btn-pantalla" data-destino="catalogo">
+          2. Catálogo de Juegos
+        </button>
+        <button type="button" class="btn-pantalla" data-destino="juego">
+          3. Pantalla de Juego
+        </button>
+        <button type="button" class="btn-pantalla" data-destino="cargar-dinero">
+          4. Cargar Dinero
+        </button>
+        <button type="button" class="btn-pantalla" data-destino="cajero">
+          5. Retirar Dinero (Cajero)
+        </button>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <div class="logo-contenedor" onclick="document.querySelector('[data-destino=catalogo]').click()">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </div>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <button type="button" class="btn-header-accion btn-header-cargar" data-destino="cargar-dinero" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </button>
+        <button type="button" class="btn-header-accion btn-header-retirar" data-destino="cajero" title="Retirar fondos a tu cuenta">
+          🏦 Retirar
+        </button>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 1: AUTENTICACIÓN (VA PRIMERO SEGÚN EL REQUERIMIENTO)     -->
+    <!-- ================================================================= -->
+    <section id="pantalla-autenticacion" class="pantalla visible">
+      <div class="auth-wrapper">
+        <div class="auth-caja">
+          <div style="text-align: center; font-size: 36px; margin-bottom: 8px;">🎰</div>
+          <h1 class="auth-titulo">Bienvenido a Casino UCC</h1>
+          <p class="auth-subtitulo">Autentícate para acceder al catálogo exclusivo de juegos</p>
+
+          <div class="pestañas-auth">
+            <button type="button" id="tab-login" class="tab-auth activa">Iniciar Sesión</button>
+            <button type="button" id="tab-register" class="tab-auth">Crear Cuenta</button>
+          </div>
+
+          <form id="form-autenticacion">
+            <div class="grupo-formulario">
+              <label for="auth-usuario">Usuario o Correo Electrónico</label>
+              <input type="text" id="auth-usuario" value="alejandro_vip" required />
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="auth-password">Contraseña</label>
+              <input type="password" id="auth-password" value="RoyalePass2025" required />
+            </div>
+
+            <button type="submit" id="btn-auth-submit" class="btn-principal">
+              Ingresar al Casino
+            </button>
+          </form>
+
+          <div class="auth-nota">
+            🔒 <strong>Acceso Seguro:</strong> Al hacer click en "Ingresar al Casino", el sistema valida las credenciales en JavaScript y te redirige automáticamente al <strong>Catálogo de Juegos</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 2: CATÁLOGO DE JUEGOS (LUEGO DE LA AUTENTICACIÓN)        -->
+    <!-- ================================================================= -->
+    <section id="pantalla-catalogo" class="pantalla">
+      <div class="catalogo-header">
+        
+        <!-- Banner destacado -->
+        <div class="banner-destacado">
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #ffd166; letter-spacing: 1px;">
+              ⭐ Juego Destacado del Mes
+            </span>
+            <h2>Gates of Olympus Royale</h2>
+            <p>Multiplicadores de hasta 500x y premios en cascada. Haz click en el juego para probar el simulador.</p>
+          </div>
+          <div class="indicador-jackpot">
+            <span>Bote Acumulado en Vivo</span>
+            <div class="jackpot-numero">$4,136,540.25 USD</div>
+          </div>
+        </div>
+
+        <!-- Instrucción explícita según el requerimiento -->
+        <div class="aviso-click-nombre">
+          <span>👆</span>
+          <span>
+            <strong>Requerimiento cumplido:</strong> Haz click directamente sobre el <strong>nombre de cualquiera de los juegos cargados</strong> para ir a su <strong>Pantalla de Juego</strong> interactiva.
+          </span>
+        </div>
+
+        <!-- Barra de filtros y buscador -->
+        <div class="barra-filtros">
+          <div class="filtro-categorias">
+            <button type="button" class="btn-categoria activo" data-categoria="todos">Todos los Juegos</button>
+            <button type="button" class="btn-categoria" data-categoria="slots">Tragamonedas</button>
+            <button type="button" class="btn-categoria" data-categoria="ruleta">Ruleta</button>
+            <button type="button" class="btn-categoria" data-categoria="blackjack">Blackjack</button>
+            <button type="button" class="btn-categoria" data-categoria="jackpot">Jackpots</button>
+          </div>
+          <div>
+            <input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar por nombre de juego..." />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cuadrícula de juegos escrita directamente en HTML semántico puro (sin datos mockeados ni JSON) -->
+      <div id="grid-juegos" class="cuadricula-juegos">
+        
+        <!-- Juego 1: Tragamonedas -->
+        <article class="tarjeta-juego" data-id="gates-of-olympus" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Gates of Olympus Royale" data-proveedor="Pragmatic Play" data-rtp="96.50%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Gates of Olympus Royale" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="gates-of-olympus" title="Hacer click para jugar a Gates of Olympus Royale">
+                Gates of Olympus Royale
+              </a>
+              <div class="juego-detalles">
+                <span>Pragmatic Play</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.50%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="gates-of-olympus">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 2: Ruleta Europea -->
+        <article class="tarjeta-juego" data-id="roulette-royale-live" data-tipo-maquina="ruleta" data-categoria="ruleta" data-titulo="Roulette Royale Live" data-proveedor="Evolution Gaming" data-rtp="97.30%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=600&auto=format&fit=crop&q=80" alt="Roulette Royale Live" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="roulette-royale-live" title="Hacer click para jugar a Roulette Royale Live">
+                Roulette Royale Live
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Ruleta</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 97.30%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="roulette-royale-live">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 3: Blackjack -->
+        <article class="tarjeta-juego" data-id="vip-blackjack-diamond" data-tipo-maquina="blackjack" data-categoria="blackjack" data-titulo="VIP Blackjack Diamond" data-proveedor="Royale Studios VIP" data-rtp="99.28%" data-min="25">
+          <img src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=600&auto=format&fit=crop&q=80" alt="VIP Blackjack Diamond" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="vip-blackjack-diamond" title="Hacer click para jugar a VIP Blackjack Diamond">
+                VIP Blackjack Diamond
+              </a>
+              <div class="juego-detalles">
+                <span>Royale Studios VIP</span>
+                <span class="badge-categoria">Blackjack</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 99.28%</span>
+                <span>Min: $25</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="vip-blackjack-diamond">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 4: Sweet Bonanza 1000 -->
+        <article class="tarjeta-juego" data-id="sweet-bonanza-1000" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Sweet Bonanza 1000" data-proveedor="Pragmatic Play" data-rtp="96.53%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600&auto=format&fit=crop&q=80" alt="Sweet Bonanza 1000" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="sweet-bonanza-1000" title="Hacer click para jugar a Sweet Bonanza 1000">
+                Sweet Bonanza 1000
+              </a>
+              <div class="juego-detalles">
+                <span>Pragmatic Play</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.53%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="sweet-bonanza-1000">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 5: Mega Moolah Safari (Jackpot) -->
+        <article class="tarjeta-juego" data-id="mega-moolah-safari" data-tipo-maquina="slot" data-categoria="jackpot" data-titulo="Mega Moolah Safari" data-proveedor="Microgaming" data-rtp="94.80%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80" alt="Mega Moolah Safari" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="mega-moolah-safari" title="Hacer click para jugar a Mega Moolah Safari">
+                Mega Moolah Safari
+              </a>
+              <div class="juego-detalles">
+                <span>Microgaming</span>
+                <span class="badge-categoria">Jackpot</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 94.80%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="mega-moolah-safari">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 6: Lightning Roulette Deluxe -->
+        <article class="tarjeta-juego" data-id="lightning-roulette-deluxe" data-tipo-maquina="ruleta" data-categoria="ruleta" data-titulo="Lightning Roulette Deluxe" data-proveedor="Evolution Gaming" data-rtp="97.10%" data-min="10">
+          <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=600&auto=format&fit=crop&q=80" alt="Lightning Roulette Deluxe" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="lightning-roulette-deluxe" title="Hacer click para jugar a Lightning Roulette Deluxe">
+                Lightning Roulette Deluxe
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Ruleta</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 97.10%</span>
+                <span>Min: $10</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="lightning-roulette-deluxe">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 7: Book of Dead Secrets -->
+        <article class="tarjeta-juego" data-id="book-of-dead-secrets" data-tipo-maquina="slot" data-categoria="slots" data-titulo="Book of Dead Secrets" data-proveedor="Play'n GO" data-rtp="96.21%" data-min="5">
+          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80" alt="Book of Dead Secrets" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="book-of-dead-secrets" title="Hacer click para jugar a Book of Dead Secrets">
+                Book of Dead Secrets
+              </a>
+              <div class="juego-detalles">
+                <span>Play'n GO</span>
+                <span class="badge-categoria">Tragamonedas</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 96.21%</span>
+                <span>Min: $5</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="book-of-dead-secrets">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+        <!-- Juego 8: Infinite Blackjack Pro -->
+        <article class="tarjeta-juego" data-id="infinite-blackjack-pro" data-tipo-maquina="blackjack" data-categoria="blackjack" data-titulo="Infinite Blackjack Pro" data-proveedor="Evolution Gaming" data-rtp="99.47%" data-min="20">
+          <img src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=600&auto=format&fit=crop&q=80" alt="Infinite Blackjack Pro" loading="lazy" />
+          <div class="juego-cuerpo">
+            <div>
+              <a href="#juego" class="nombre-juego" data-id="infinite-blackjack-pro" title="Hacer click para jugar a Infinite Blackjack Pro">
+                Infinite Blackjack Pro
+              </a>
+              <div class="juego-detalles">
+                <span>Evolution Gaming</span>
+                <span class="badge-categoria">Blackjack</span>
+              </div>
+              <div class="juego-detalles">
+                <span>RTP: 99.47%</span>
+                <span>Min: $20</span>
+              </div>
+            </div>
+            <button type="button" class="btn-jugar-tarjeta" data-id="infinite-blackjack-pro">
+              Jugar Ahora
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 3: PANTALLA DE JUEGO (MÁQUINAS PROGRAMADAS EN JS)         -->
+    <!-- ================================================================= -->
+    <section id="pantalla-juego" class="pantalla">
+      
+      <!-- Barra superior de la pantalla de juego -->
+      <div class="juego-barra-superior">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button type="button" id="btn-volver-catalogo" class="btn-volver">
+            <span>←</span>
+            <span>Volver al Catálogo</span>
+          </button>
+          <div class="juego-info-titulo">
+            <h2 id="juego-titulo">Gates of Olympus Royale</h2>
+            <p>
+              Proveedor: <strong id="juego-proveedor">Pragmatic Play</strong> • 
+              <span id="juego-rtp">RTP: 96.50%</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="juego-acciones-financieras">
+          <div class="alternador-modo">
+            <button type="button" id="btn-modo-real" class="btn-modo activo">Dinero Real</button>
+            <button type="button" id="btn-modo-demo" class="btn-modo">Modo Demo</button>
+          </div>
+          <div class="caja-saldo" style="border-color: #0066ff;">
+            <span class="etiqueta-saldo">Saldo para Jugar</span>
+            <span class="monto-saldo" id="juego-saldo-display">$12,450.00 USD</span>
+          </div>
+          <button type="button" id="btn-juego-ir-retirar" class="btn-juego-financiero btn-juego-retirar" title="Retirar tus ganancias directamente al cajero">
+            🏦 Retirar Dinero
+          </button>
+          <button type="button" id="btn-juego-ir-cargar" class="btn-juego-financiero btn-juego-cargar" title="Cargar más saldo a tu cuenta">
+            + 💳 Cargar Dinero
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR DE LAS MÁQUINAS -->
+      <div class="maquina-contenedor">
+        
+        <!-- MÁQUINA 1: TRAGAMONEDAS (SLOT) -->
+        <div id="maquina-slot" style="display: block;">
+          <div class="tragamonedas-pantalla">
+            <div class="rodillos-grid">
+              <!-- 5 Columnas x 3 Filas = 15 casillas con símbolos -->
+              <div class="rodillo-columna">
+                <div class="simbolo-ranura">👑</div>
+                <div class="simbolo-ranura">💎</div>
+                <div class="simbolo-ranura">7️⃣</div>
+              </div>
+              <div class="rodillo-columna">
+                <div class="simbolo-ranura">7️⃣</div>
+                <div class="simbolo-ranura">👑</div>
+                <div class="simbolo-ranura">⭐</div>
+              </div>
+              <div class="rodillo-columna">
+                <div class="simbolo-ranura">⭐</div>
+                <div class="simbolo-ranura">⚡</div>
+                <div class="simbolo-ranura">👑</div>
+              </div>
+              <div class="rodillo-columna">
+                <div class="simbolo-ranura">⚡</div>
+                <div class="simbolo-ranura">🔔</div>
+                <div class="simbolo-ranura">💎</div>
+              </div>
+              <div class="rodillo-columna">
+                <div class="simbolo-ranura">🔔</div>
+                <div class="simbolo-ranura">🍒</div>
+                <div class="simbolo-ranura">7️⃣</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÁQUINA 2: RULETA -->
+        <div id="maquina-ruleta" style="display: none;">
+          <div class="ruleta-pantalla">
+            <div class="ruleta-cabecera">
+              <div>
+                <h3 style="font-size: 18px; text-transform: uppercase; color: #ffd166; font-weight: 800;">
+                  Ruleta Europea en Directo
+                </h3>
+                <p style="font-size: 12px; color: #a4b3d6;">
+                  Haz click en números individuales (0-36) o combina varias apuestas: Color, Par/Impar, Mitades y Docenas.
+                </p>
+              </div>
+              
+              <!-- Historial de números recientes -->
+              <div class="ruleta-historial-contenedor">
+                <span style="font-size: 11px; color: #a4b3d6; font-weight: 700;">Últimos:</span>
+                <div id="ruleta-historial" class="ruleta-historial-bolas">
+                  <span class="bola-historial rojo">7</span>
+                  <span class="bola-historial negro">20</span>
+                  <span class="bola-historial rojo">32</span>
+                  <span class="bola-historial verde">0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Display central del número resultado -->
+            <div class="ruleta-animacion-caja">
+              <div id="ruleta-rueda-icono" class="ruleta-disco">🎡</div>
+              <div id="ruleta-numero-resultado" class="ruleta-resultado verde">
+                0 (VERDE)
+              </div>
+            </div>
+
+            <!-- Selector de valor de ficha y barra de estado de apuestas -->
+            <div class="ruleta-barra-fichas">
+              <div class="fichas-selector">
+                <span style="font-size: 12px; font-weight: 700; color: #ffd166;">Valor de Ficha:</span>
+                <button type="button" class="btn-ficha activa" data-valor="5">$5</button>
+                <button type="button" class="btn-ficha" data-valor="10">$10</button>
+                <button type="button" class="btn-ficha" data-valor="25">$25</button>
+                <button type="button" class="btn-ficha" data-valor="50">$50</button>
+                <button type="button" class="btn-ficha" data-valor="100">$100</button>
+              </div>
+
+              <div class="ruleta-resumen-apuestas">
+                <span id="ruleta-total-apostado-texto">Total en Mesa: <strong>$0.00 USD</strong> (0 apuestas)</span>
+                <button type="button" id="btn-ruleta-limpiar" class="btn-accion-secundario" title="Quitar todas las fichas del paño">
+                  🧹 Limpiar Mesa
+                </button>
+                <button type="button" id="btn-ruleta-doblar" class="btn-accion-secundario" title="Doblar el valor de todas las apuestas">
+                  ✖2 Doblar
+                </button>
+              </div>
+            </div>
+
+            <!-- PAÑO DE APUESTAS DE LA RULETA (TABLE FELT) -->
+            <div class="ruleta-pano-scroll">
+              <div class="ruleta-tablero" id="ruleta-tablero">
+                <!-- Casilla del 0 -->
+                <button type="button" class="ruleta-casilla cero verde" data-tipo="numero" data-valor="0" id="casilla-num-0">
+                  <span class="numero-label">0</span>
+                  <span class="ficha-badge" id="ficha-num-0"></span>
+                </button>
+
+                <!-- Cuadrícula 1 a 36 -->
+                <div class="ruleta-grid-numeros" id="ruleta-grid-numeros">
+                  <!-- Generado dinámicamente con JavaScript (Fila 3, Fila 2, Fila 1) -->
+                </div>
+
+                <!-- Columnas (2 to 1) a la derecha -->
+                <div class="ruleta-col-apuestas">
+                  <button type="button" class="ruleta-casilla col-apuesta" data-tipo="columna" data-valor="3" id="casilla-col-3">
+                    2:1
+                    <span class="ficha-badge" id="ficha-col-3"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla col-apuesta" data-tipo="columna" data-valor="2" id="casilla-col-2">
+                    2:1
+                    <span class="ficha-badge" id="ficha-col-2"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla col-apuesta" data-tipo="columna" data-valor="1" id="casilla-col-1">
+                    2:1
+                    <span class="ficha-badge" id="ficha-col-1"></span>
+                  </button>
+                </div>
+
+                <!-- Fila de Docenas (1st 12, 2nd 12, 3rd 12) -->
+                <div class="ruleta-fila-docenas">
+                  <button type="button" class="ruleta-casilla docena" data-tipo="docena" data-valor="1" id="casilla-doc-1">
+                    1ª Docena (1 - 12) • Paga 3:1
+                    <span class="ficha-badge" id="ficha-doc-1"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla docena" data-tipo="docena" data-valor="2" id="casilla-doc-2">
+                    2ª Docena (13 - 24) • Paga 3:1
+                    <span class="ficha-badge" id="ficha-doc-2"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla docena" data-tipo="docena" data-valor="3" id="casilla-doc-3">
+                    3ª Docena (25 - 36) • Paga 3:1
+                    <span class="ficha-badge" id="ficha-doc-3"></span>
+                  </button>
+                </div>
+
+                <!-- Fila de Apuestas Simples (1-18, PAR, ROJO, NEGRO, IMPAR, 19-36) -->
+                <div class="ruleta-fila-exteriores">
+                  <button type="button" class="ruleta-casilla exterior" data-tipo="mitad" data-valor="1" id="casilla-mitad-1">
+                    1 a 18 (2:1)
+                    <span class="ficha-badge" id="ficha-mitad-1"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla exterior par" data-tipo="paridad" data-valor="par" id="casilla-par">
+                    PAR (2:1)
+                    <span class="ficha-badge" id="ficha-par"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla exterior rojo" data-tipo="color" data-valor="rojo" id="casilla-rojo">
+                    ROJO (2:1)
+                    <span class="ficha-badge" id="ficha-rojo"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla exterior negro" data-tipo="color" data-valor="negro" id="casilla-negro">
+                    NEGRO (2:1)
+                    <span class="ficha-badge" id="ficha-negro"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla exterior impar" data-tipo="paridad" data-valor="impar" id="casilla-impar">
+                    IMPAR (2:1)
+                    <span class="ficha-badge" id="ficha-impar"></span>
+                  </button>
+                  <button type="button" class="ruleta-casilla exterior" data-tipo="mitad" data-valor="2" id="casilla-mitad-2">
+                    19 a 36 (2:1)
+                    <span class="ficha-badge" id="ficha-mitad-2"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desglose de apuestas colocadas -->
+            <div class="ruleta-lista-apuestas-contenedor">
+              <span style="font-size: 11px; text-transform: uppercase; color: #a4b3d6; font-weight: 700;">Apuestas Activas en esta Ronda:</span>
+              <div id="ruleta-chips-activas" class="ruleta-chips-activas">
+                <span style="color: #6c7d9e; font-size: 12px; font-style: italic;">Ninguna ficha en la mesa. Haz click en cualquier número o casilla para apostar.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- MÁQUINA 3: BLACKJACK -->
+        <div id="maquina-blackjack" style="display: none;">
+          <div class="blackjack-pantalla">
+            <!-- Mano del crupier -->
+            <div class="zona-cartas">
+              <span style="font-size: 12px; font-weight: 800; color: #ffd166; text-transform: uppercase;">
+                Mano del Crupier (<span id="blackjack-puntos-crupier">Puntos: 0</span>)
+              </span>
+              <div id="blackjack-cartas-crupier" class="fila-cartas">
+                <div class="carta-oculta">🔒</div>
+                <div class="carta-oculta">🔒</div>
+              </div>
+            </div>
+
+            <!-- Mano del jugador -->
+            <div class="zona-cartas" style="margin-top: 20px;">
+              <span style="font-size: 12px; font-weight: 800; color: #ffffff; text-transform: uppercase;">
+                Tus Cartas (<span id="blackjack-puntos-jugador">Puntos: 0</span>)
+              </span>
+              <div id="blackjack-cartas-jugador" class="fila-cartas">
+                <div class="carta-item"><span>A</span><span style="font-size:24px; align-self:center;">♠</span><span style="align-self:flex-end;">A</span></div>
+                <div class="carta-item"><span>K</span><span style="font-size:24px; align-self:center;">♠</span><span style="align-self:flex-end;">K</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTROLES DE APUESTA Y ACCIÓN -->
+        <div class="controles-juego">
+          <div class="selector-apuesta">
+            <span>Apuesta:</span>
+            <button type="button" id="btn-apuesta-menos" class="btn-ajuste-apuesta">-</button>
+            <div id="juego-apuesta-display" class="caja-monto-apuesta">$10.00 USD</div>
+            <button type="button" id="btn-apuesta-mas" class="btn-ajuste-apuesta">+</button>
+            <button type="button" id="btn-apuesta-max" class="btn-ajuste-apuesta" style="width: auto; padding: 0 10px; font-size: 12px;">MAX</button>
+          </div>
+
+          <!-- Botones según máquina activa -->
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" id="btn-girar-slot" class="btn-accion-maquina">
+              🎰 Girar Rodillos
+            </button>
+            <button type="button" id="btn-girar-ruleta" class="btn-accion-maquina" style="display: none;">
+              🎡 Girar Ruleta
+            </button>
+            <button type="button" id="btn-bj-repartir" class="btn-accion-maquina" style="display: none;">
+              🃏 Repartir Mano
+            </button>
+            <button type="button" id="btn-bj-pedir" class="btn-pantalla" style="display: none; background: #0066ff; color: #fff; font-size: 13px;" disabled>
+              + Pedir Carta
+            </button>
+            <button type="button" id="btn-bj-plantarse" class="btn-pantalla" style="display: none; background: #e5a93b; color: #000; font-size: 13px;" disabled>
+              ✋ Plantarse
+            </button>
+          </div>
+        </div>
+
+        <!-- Cartel de Resultado / Ganancia -->
+        <div id="mensaje-resultado-juego" class="mensaje-resultado">
+          Selecciona tu apuesta y presiona el botón para jugar.
+        </div>
+
+        <!-- Barra de atajos financieros directos dentro del juego -->
+        <div class="barra-finanzas-juego">
+          <div class="finanzas-juego-info">
+            <span style="font-size: 24px;">💼</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #fff;">Gestión de Fondos en Vivo</div>
+              <div style="font-size: 12px; color: #a4b3d6;">¿Quieres retirar tus ganancias acumuladas o cargar saldo para seguir jugando?</div>
+            </div>
+          </div>
+          <div class="finanzas-juego-botones">
+            <button type="button" class="btn-finanza-accion btn-finanza-retirar" id="btn-juego-inferior-retirar">
+              🏦 Retirar Ganancias al Cajero
+            </button>
+            <button type="button" class="btn-finanza-accion btn-finanza-cargar" id="btn-juego-inferior-cargar">
+              + 💳 Cargar Saldo
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 4: CARGAR DINERO (DEPÓSITO INMEDIATO DE SALDO)           -->
+    <!-- ================================================================= -->
+    <section id="pantalla-cargar-dinero" class="pantalla">
+      <div class="cajero-encabezado">
+        <div>
+          <h2 style="font-size: 24px; font-weight: 800; color: #fff;">Cargar Dinero en Cuenta</h2>
+          <p style="font-size: 13px; color: #a4b3d6;">Depósitos instantáneos y 100% seguros sin comisiones adicionales.</p>
+        </div>
+        <div class="cajero-banner-switch">
+          <span>¿Prefieres retirar tus fondos?</span>
+          <button type="button" class="btn-switch-cajero" id="btn-switch-a-retiros">
+            🏦 Ir a Retirar Dinero
+          </button>
+        </div>
+      </div>
+
+      <div class="cajero-grid">
+        <!-- Formulario de Carga de Dinero -->
+        <div class="tarjeta-cajero">
+          <h3>Depósito Inmediato</h3>
+          
+          <div class="cajero-resumen-saldos">
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Saldo Actual Disponible:</div>
+              <div id="cargar-saldo-display" style="font-size: 22px; font-weight: 800; color: #ffd166;">$12,450.00 USD</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: #a4b3d6; text-transform: uppercase; font-weight: 700;">Estado de Cuenta:</div>
+              <div style="font-size: 13px; font-weight: 800; color: #69f0ae;">✓ Verificada VIP</div>
+            </div>
+          </div>
+
+          <form id="form-cargar-dinero">
+            <!-- Selector de Método de Pago -->
+            <div class="grupo-formulario">
+              <label for="cargar-metodo">Método de Pago</label>
+              <select id="cargar-metodo" class="select-cajero">
+                <option value="Tarjeta de Débito / Crédito (Visa / Mastercard)">💳 Tarjeta Débito / Crédito (Visa, Mastercard, Cabal)</option>
+                <option value="Transferencia Bancaria Inmediata (CBU / CVU)">🏦 Transferencia Inmediata (CBU / CVU / Alias)</option>
+                <option value="Mercado Pago (QR / Saldo)">📱 Mercado Pago (Transferencia / QR)</option>
+                <option value="Binance Pay / USDT (Tether TRC-20)">⚡ Cripto USDT Tether (TRC-20 / Binance Pay)</option>
+                <option value="Bitcoin (BTC) / Ethereum (ETH)">🪙 Criptomonedas (BTC / ETH)</option>
+              </select>
+            </div>
+
+            <!-- Botones de Montos Rápidos -->
+            <div class="grupo-formulario">
+              <label>Selecciona un Monto Rápido</label>
+              <div class="montos-rapidos-grid">
+                <button type="button" class="btn-monto-rapido" data-monto="25">+$25</button>
+                <button type="button" class="btn-monto-rapido" data-monto="50">+$50</button>
+                <button type="button" class="btn-monto-rapido activa" data-monto="100">+$100</button>
+                <button type="button" class="btn-monto-rapido" data-monto="250">+$250</button>
+                <button type="button" class="btn-monto-rapido" data-monto="500">+$500</button>
+                <button type="button" class="btn-monto-rapido" data-monto="1000">+$1,000</button>
+              </div>
+            </div>
+
+            <!-- Input Monto -->
+            <div class="grupo-formulario">
+              <label for="cargar-monto">Monto a Cargar (USD)</label>
+              <input type="number" id="cargar-monto" min="10" max="50000" step="5" value="100" required />
+              <span style="font-size: 11px; color: #a4b3d6; margin-top: 4px; display: block;">Mínimo $10 USD • Acreditación en 1 segundo</span>
+            </div>
+
+            <!-- Promociones y Bonos -->
+            <div class="grupo-formulario">
+              <label for="cargar-bono">Bono Promocional Opcional</label>
+              <select id="cargar-bono" class="select-cajero">
+                <option value="bono-100">🎁 Bono Bienvenida Casino (+100% adicional)</option>
+                <option value="bono-25">💎 Bono VIP Recarga (+25% saldo limpio)</option>
+                <option value="ninguno">Sin Bono (Solo acreditar mi monto ingresado)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-principal" id="btn-submit-cargar" style="background: linear-gradient(135deg, #00c853, #009624);">
+              💳 Confirmar Carga de Dinero
+            </button>
+          </form>
+
+          <!-- Cartel de resultado de la carga -->
+          <div id="mensaje-cargar-dinero" class="mensaje-resultado" style="display: none; margin-top: 14px;"></div>
+
+          <!-- Acciones directas post-carga -->
+          <div id="acciones-post-carga" class="acciones-post-carga" style="display: none;">
+            <button type="button" class="btn-accion-post" id="btn-post-ir-juego">
+              🎰 Volver a Jugar
+            </button>
+            <button type="button" class="btn-accion-post" id="btn-post-ir-catalogo">
+              📋 Catálogo de Juegos
+            </button>
+            <button type="button" class="btn-accion-post" id="btn-post-ir-retiros">
+              🏦 Ir a Retiros
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Historial de Cargas y Garantías -->
+        <div class="tarjeta-cajero">
+          <h3>Historial de Cargas Realizadas</h3>
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Monto</th>
+                <th>Método</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-historial-cargas">
+              <tr>
+                <td>DEP-9412</td>
+                <td>$250.00 USD</td>
+                <td>Mercado Pago</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>Ayer 15:10</td>
+              </tr>
+              <tr>
+                <td>DEP-8830</td>
+                <td>$500.00 USD</td>
+                <td>Transferencia CBU</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>10/09/2025</td>
+              </tr>
+              <tr>
+                <td>DEP-7105</td>
+                <td>$100.00 USD</td>
+                <td>Tarjeta Débito</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Acreditado</span></td>
+                <td>05/09/2025</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="caja-garantias-cajero" style="margin-top: 24px;">
+            <div style="font-size: 13px; font-weight: 800; color: #ffd166; margin-bottom: 8px;">🛡️ Garantía Casino UCC</div>
+            <ul style="font-size: 12px; color: #a4b3d6; list-style-position: inside; display: flex; flex-direction: column; gap: 6px;">
+              <li>Fondos custodiados en cuentas bancarias segregadas.</li>
+              <li>Sin comisiones ocultas ni costos de procesamiento.</li>
+              <li>Soporte VIP disponible las 24 horas del día.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 5: CAJERO SEGURO (SOLICITUD DE RETIRO DE SALDO)          -->
+    <!-- ================================================================= -->
+    <section id="pantalla-cajero" class="pantalla">
+      <div class="cajero-encabezado">
+        <div>
+          <h2 style="font-size: 24px; font-weight: 800; color: #fff;">Cajero Financiero Seguro</h2>
+          <p style="font-size: 13px; color: #a4b3d6;">Gestiona tus retiros auditados con acreditación inmediata.</p>
+        </div>
+        <div class="cajero-banner-switch">
+          <span>¿Necesitas recargar fondos?</span>
+          <button type="button" class="btn-switch-cajero" id="btn-switch-a-cargar">
+            💳 Ir a Cargar Dinero
+          </button>
+        </div>
+      </div>
+
+      <div class="cajero-grid">
+        <!-- Formulario de retiro -->
+        <div class="tarjeta-cajero">
+          <h3>Solicitar Retiro de Fondos</h3>
+          <div style="margin-bottom: 16px; background: #0e1730; padding: 12px; border-radius: 8px;">
+            <div style="font-size: 12px; color: #a4b3d6;">Saldo Retirable Disponible:</div>
+            <div id="cajero-saldo-retirable" style="font-size: 22px; font-weight: 800; color: #ffd166;">$11,800.00 USD</div>
+          </div>
+
+          <form id="form-retiro">
+            <div class="grupo-formulario">
+              <label for="retiro-cuenta">Cuenta de Destino</label>
+              <select id="retiro-cuenta" style="width: 100%; padding: 12px; border-radius: 8px; background: #0e1730; border: 1px solid #2a3c75; color: #fff; font-size: 14px; outline: none;">
+                <option value="Santander Río (ARS / USD)">Santander Río •••• 4821 (Caja Ahorro USD)</option>
+                <option value="Binance Pay (USDT TRC-20)">Binance Pay •••• 9102 (USDT Tether)</option>
+                <option value="Mercado Pago (Transferencia)">Mercado Pago •••• 5530 (CVU Inmediato)</option>
+              </select>
+            </div>
+
+            <div class="grupo-formulario">
+              <label for="retiro-monto">Monto a Retirar (USD)</label>
+              <input type="number" id="retiro-monto" min="10" max="10000" step="10" value="500" required />
+            </div>
+
+            <button type="submit" class="btn-principal">
+              Confirmar Retiro Inmediato
+            </button>
+          </form>
+
+          <div id="mensaje-cajero" style="margin-top: 12px; font-size: 13px; font-weight: 700;"></div>
+        </div>
+
+        <!-- Historial de transacciones -->
+        <div class="tarjeta-cajero">
+          <h3>Historial de Retiros Recientes</h3>
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Monto</th>
+                <th>Destino</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-historial-retiros">
+              <tr>
+                <td>REQ-4912</td>
+                <td>$850.00 USD</td>
+                <td>Santander Río</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Completado</span></td>
+                <td>Ayer 18:30</td>
+              </tr>
+              <tr>
+                <td>REQ-3820</td>
+                <td>$1,200.00 USD</td>
+                <td>Binance Pay (USDT)</td>
+                <td><span style="color: #69f0ae; font-weight: 700;">Completado</span></td>
+                <td>08/09/2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+      <p>Casino UCC &copy; 2025 • Licencia Regulatoria Internacional MGA/B2C/394/2018 • <strong>+18 Juega con Responsabilidad</strong></p>
+    </footer>
+
+    <!-- SCRIPT DE PROGRAMACIÓN DE MÁQUINAS Y VARIABLES -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

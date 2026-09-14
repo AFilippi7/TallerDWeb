@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIP Blackjack Diamond 21 - Casino UCC</title>
+    <meta name="description" content="Mesa de Blackjack 21 interactiva con simulación de cartas y conteo en Casino UCC." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body data-pagina="blackjack" data-juego-tipo="blackjack" data-juego-id="vip-blackjack-diamond">
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ENTRE HTMLs -->
+    <header class="barra-control">
+      <div class="info-flujo">
+        <span>⚡ <strong>Casino UCC:</strong> Blackjack 21 &bull; HTML semántico, CSS y JS puro</span>
+      </div>
+      <nav class="botones-pantalla">
+        <a href="index.html" class="btn-pantalla">1. Autenticación</a>
+        <a href="catalogo.html" class="btn-pantalla">2. Catálogo de Juegos</a>
+        <a href="tragamonedas.html" class="btn-pantalla">Tragamonedas</a>
+        <a href="ruleta.html" class="btn-pantalla">Ruleta VIP</a>
+        <a href="blackjack.html" class="btn-pantalla activa">3. Blackjack 21</a>
+        <a href="carga.html" class="btn-pantalla">4. Cargar Dinero</a>
+        <a href="retiro.html" class="btn-pantalla">5. Retirar Dinero</a>
+      </nav>
+    </header>
+
+    <!-- HEADER PRINCIPAL CON SALDO GLOBAL Y ACCIONES RÁPIDAS -->
+    <header class="header-principal">
+      <a href="catalogo.html" class="logo-contenedor">
+        <span style="font-size: 26px;">👑</span>
+        <div class="logo-texto">Casino <span>UCC</span></div>
+      </a>
+      <div class="header-acciones">
+        <div class="caja-saldo">
+          <span class="etiqueta-saldo">Saldo Disponible</span>
+          <span class="monto-saldo" id="header-saldo">$12,450.00 USD</span>
+        </div>
+        <a href="carga.html" class="btn-header-accion btn-header-cargar" title="Cargar saldo en tu cuenta">
+          <span>+</span> Cargar Dinero
+        </a>
+        <a href="retiro.html" class="btn-header-accion btn-header-retirar" title="Retirar fondos al cajero">
+          🏦 Retirar
+        </a>
+      </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- PÁGINA: VIP BLACKJACK DIAMOND                                    -->
+    <!-- ================================================================= -->
+    <main id="pantalla-juego" class="pantalla visible" style="display: block;">
+      
+      <div class="juego-barra-superior">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <a href="catalogo.html" class="btn-volver">
+            <span>&larr;</span> Volver al Catálogo
+          </a>
+          <div class="juego-info-titulo">
+            <h1 id="juego-titulo" style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">VIP Blackjack Diamond</h1>
+            <p><span id="juego-proveedor">Playtech</span> &bull; <span id="juego-rtp">RTP: 99.28%</span></p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div class="alternador-modo">
+            <button type="button" id="btn-modo-real" class="btn-modo activo">Modo Real</button>
+            <button type="button" id="btn-modo-demo" class="btn-modo">Modo Demo</button>
+          </div>
+
+          <div class="juego-acciones-financieras">
+            <a href="retiro.html" class="btn-juego-financiero btn-juego-retirar" title="Ir al Cajero para retirar tus ganancias">
+              🏦 Retirar Dinero
+            </a>
+            <a href="carga.html" class="btn-juego-financiero btn-juego-cargar" title="Ir a Cargar saldo a tu cuenta">
+              + 💳 Cargar Saldo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mesa de Blackjack -->
+      <div class="maquina-contenedor">
+        <div id="maquina-blackjack" class="maquina-subpantalla" style="display: block;">
+          <div class="blackjack-mesa">
+            <!-- Zona del Crupier -->
+            <div class="zona-crupier">
+              <div class="bj-etiqueta-rol">Crupier (Casa) <span id="bj-puntos-crupier" class="bj-puntos-badge">0</span></div>
+              <div class="bj-cartas-contenedor" id="bj-cartas-crupier">
+                <div class="carta-bj carta-reverso">?</div>
+                <div class="carta-bj">🂠</div>
+              </div>
+            </div>
+
+            <!-- Divisoria de Mesa -->
+            <div class="bj-linea-paño">
+              <span>EL CRUPIER DEBE PEDIR CON 16 Y PLANTARSE CON 17 &bull; PAGO BLACKJACK 3:2</span>
+            </div>
+
+            <!-- Zona del Jugador -->
+            <div class="zona-jugador">
+              <div class="bj-etiqueta-rol">Tus Cartas <span id="bj-puntos-jugador" class="bj-puntos-badge">0</span></div>
+              <div class="bj-cartas-contenedor" id="bj-cartas-jugador">
+                <div class="carta-bj">🂠</div>
+                <div class="carta-bj">🂠</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel de Control y Apuestas -->
+        <div class="controles-maquina">
+          <div class="caja-saldo-juego">
+            <span style="font-size: 11px; color: #a4b3d6; text-transform: uppercase;">Saldo de Partida</span>
+            <span id="juego-saldo-display" style="font-size: 18px; font-weight: 800; color: #ffd166;">$12,450.00 USD</span>
+          </div>
+
+          <div class="selector-apuesta">
+            <span style="font-size: 12px; color: #a4b3d6; font-weight: 700;">Apuesta:</span>
+            <button type="button" class="btn-apuesta-ajuste" id="btn-menos-apuesta">-</button>
+            <div class="caja-monto-apuesta" id="juego-apuesta-display">$25.00 USD</div>
+            <button type="button" class="btn-apuesta-ajuste" id="btn-mas-apuesta">+</button>
+          </div>
+
+          <div class="acciones-juego-botones">
+            <button type="button" class="btn-accion-maquina" id="btn-bj-repartir" style="display: inline-block;">
+              🃏 Repartir Cartas
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-bj-pedir" style="display: inline-block; background: #0084ff; color: #fff;">
+              + Pedir Carta
+            </button>
+            <button type="button" class="btn-accion-maquina" id="btn-bj-plantarse" style="display: inline-block; background: #c2881a; color: #fff;">
+              ✋ Plantarse
+            </button>
+          </div>
+        </div>
+
+        <div id="mensaje-resultado-juego" class="mensaje-resultado">
+          Presiona Repartir Cartas para comenzar tu mano de Blackjack.
+        </div>
+
+        <div class="barra-finanzas-juego">
+          <div class="finanzas-juego-info">
+            <span style="font-size: 24px;">💼</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #fff;">Gestión de Fondos en Vivo</div>
+              <div style="font-size: 12px; color: #a4b3d6;">¿Quieres retirar tus ganancias acumuladas o cargar saldo para seguir jugando?</div>
+            </div>
+          </div>
+          <div class="finanzas-juego-botones">
+            <a href="retiro.html" class="btn-finanza-accion btn-finanza-retirar">
+              🏦 Retirar Ganancias al Cajero
+            </a>
+            <a href="carga.html" class="btn-finanza-accion btn-finanza-cargar">
+              + 💳 Cargar Saldo
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer-principal">
+      <p><strong>Casino UCC</strong> &bull; Blackjack 21 en HTML, CSS y JavaScript &bull; Entrega 1</p>
+    </footer>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
